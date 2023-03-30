@@ -14,13 +14,15 @@ if (!extra.has("kspVersion")) {
     extra.set("kspVersion", "2.0.255-SNAPSHOT")
 }
 
+val kotlin_repo_url: String? by project
 repositories {
     mavenCentral()
     maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/bootstrap/")
+    kotlin_repo_url?.also { maven(it) }
 }
 
 plugins {
-    kotlin("jvm") version "1.8.0"
+    kotlin("jvm")
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
 }
 
@@ -46,6 +48,7 @@ subprojects {
         google()
         maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/bootstrap/")
         maven("https://www.jetbrains.com/intellij-repository/snapshots")
+        kotlin_repo_url?.also { maven(it) }
     }
     pluginManager.withPlugin("maven-publish") {
         val publishExtension = extensions.getByType<PublishingExtension>()
@@ -93,5 +96,10 @@ subprojects {
     tasks.withType<JavaCompile>().configureEach {
         sourceCompatibility = JavaVersion.VERSION_1_8.toString()
         targetCompatibility = JavaVersion.VERSION_1_8.toString()
+    }
+    tasks {
+        withType<Jar>().configureEach {
+            duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        }
     }
 }
