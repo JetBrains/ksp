@@ -3,6 +3,7 @@ rootProject.name = "ksp"
 pluginManagement {
     val buildKotlinVersion: String by settings
     val buildKspVersion: String by settings
+    val kotlin_repo_url: String? by settings
 
     plugins {
         kotlin("jvm") version buildKotlinVersion apply false
@@ -13,6 +14,7 @@ pluginManagement {
         gradlePluginPortal()
         maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/bootstrap/")
         maven("https://www.jetbrains.com/intellij-repository/snapshots")
+        kotlin_repo_url?.also { maven(it) }
     }
 }
 

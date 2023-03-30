@@ -17,9 +17,11 @@ if (!extra.has("kspVersion")) {
     extra.set("kspVersion", "2.0.255-SNAPSHOT")
 }
 
+val kotlin_repo_url: String? by project
 repositories {
     mavenCentral()
     maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/bootstrap/")
+    kotlin_repo_url?.also { maven(it) }
 }
 
 plugins {
@@ -53,6 +55,7 @@ subprojects {
         google()
         maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/bootstrap/")
         maven("https://www.jetbrains.com/intellij-repository/releases")
+        kotlin_repo_url?.also { maven(it) }
     }
     pluginManager.withPlugin("maven-publish") {
         val publishExtension = extensions.getByType<PublishingExtension>()
@@ -114,6 +117,11 @@ subprojects {
             jvmToolchain {
                 languageVersion = compileJavaVersion
             }
+        }
+    }
+    tasks {
+        withType<Jar>().configureEach {
+            duplicatesStrategy = DuplicatesStrategy.INCLUDE
         }
     }
 
