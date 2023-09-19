@@ -14,10 +14,15 @@ allprojects {
     }
 
     tasks.withType<KotlinCompilationTask<*>>().configureEach {
-        if (this is KspTaskJvm) return@configureEach
-        compilerOptions {
-            getOverriddenKotlinLanguageVersion(project)?.also { languageVersion.set(KotlinVersion.valueOf(it)) }
-            getOverriddenKotlinApiVersion(project)?.also { apiVersion.set(KotlinVersion.valueOf(it)) }
-        }
+        if (this is KspTaskJvm) {
+            compilerOptions {
+                getOverriddenKspLanguageVersion(project)?.also { languageVersion.set(KotlinVersion.fromVersion(it)) }
+                getOverriddenKspApiVersion(project)?.also { apiVersion.set(KotlinVersion.fromVersion(it)) }
+            }
+        } else
+            compilerOptions {
+                getOverriddenKotlinLanguageVersion(project)?.also { languageVersion.set(KotlinVersion.fromVersion(it)) }
+                getOverriddenKotlinApiVersion(project)?.also { apiVersion.set(KotlinVersion.fromVersion(it)) }
+            }
     }
 }
