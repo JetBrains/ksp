@@ -63,6 +63,12 @@ class KotlinSymbolProcessingCommandLineProcessor : CommandLineProcessor {
 @Suppress("DEPRECATION")
 @ExperimentalCompilerApi
 class KotlinSymbolProcessingComponentRegistrar : ComponentRegistrar {
+
+//TODO("Remove temporary workaround for: e: There are some plugins incompatible with language version 2.0:
+//  com.google.devtools.ksp.KotlinSymbolProcessingComponentRegistrar")
+
+    override val supportsK2: Boolean get() = true
+
     override fun registerProjectComponents(project: MockProject, configuration: CompilerConfiguration) {
         val contentRoots = configuration[CLIConfigurationKeys.CONTENT_ROOTS] ?: emptyList()
         val options = configuration[KSP_OPTIONS]?.apply {

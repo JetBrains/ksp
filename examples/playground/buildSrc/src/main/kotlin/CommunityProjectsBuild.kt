@@ -51,3 +51,20 @@ fun getKotlinDevRepositoryUrl(project: Project): String? {
     return url
 }
 
+fun getOverriddenKspApiVersion(project: Project): String? {
+    val apiVersion = project.rootProject.properties["ksp_api_version"] as? String
+    if (apiVersion != null) {
+        project.logger.info("""[COMMUNITY_PROJECT_BUILD] Configured KSP API version: '$apiVersion' for project $${project.name}""")
+    }
+    return apiVersion
+}
+
+fun getOverriddenKspLanguageVersion(project: Project): String? {
+    val languageVersion = project.rootProject.properties["ksp_language_version"] as? String
+    if (languageVersion != null) {
+        project.logger.info("""[COMMUNITY_PROJECT_BUILD] Configured KSP Language version: '$languageVersion' for project ${project.name}""")
+    }
+    return languageVersion
+}
+
+
