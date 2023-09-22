@@ -4,7 +4,7 @@ pluginManagement {
     val kotlin_version: String? by settings
     val kotlin_repo_url: String? by settings
     plugins {
-        kotlin("jvm") version (kotlin_version ?: "1.8.0")
+        kotlin("jvm") version (kotlin_version ?: "1.9.20-Beta2")
     }
     repositories {
         gradlePluginPortal()

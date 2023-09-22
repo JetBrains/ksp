@@ -152,13 +152,7 @@ signing {
     sign(extensions.getByType<PublishingExtension>().publications)
 }
 
-//kotlin {
-//    compilerOptions {
-//        freeCompilerArgs.add("-Xcontext-receivers")
-//    }
-//}
-
-tasks.withType(KotlinCompile::class.java).configureEach {
+kotlin {
     compilerOptions {
         freeCompilerArgs.add("-Xcontext-receivers")
     }
