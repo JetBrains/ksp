@@ -1,4 +1,5 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 description = "Kotlin Symbol Processing implementation using Kotlin Analysis API"
 
@@ -151,7 +152,13 @@ signing {
     sign(extensions.getByType<PublishingExtension>().publications)
 }
 
-kotlin {
+//kotlin {
+//    compilerOptions {
+//        freeCompilerArgs.add("-Xcontext-receivers")
+//    }
+//}
+
+tasks.withType(KotlinCompile::class.java).configureEach {
     compilerOptions {
         freeCompilerArgs.add("-Xcontext-receivers")
     }
