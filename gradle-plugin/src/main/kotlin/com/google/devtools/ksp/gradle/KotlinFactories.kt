@@ -15,7 +15,8 @@
  * limitations under the License.
  */
 
-@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER", "INVISIBLE_SETTER")
+//INVISIBLE_SETTER added as a WA for KT-62153
 
 package com.google.devtools.ksp.gradle
 import org.gradle.api.Project
