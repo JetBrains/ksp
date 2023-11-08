@@ -126,6 +126,10 @@ subprojects {
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-        compilerOptions.freeCompilerArgs.add("-Xskip-prerelease-check")
+        compilerOptions {
+            freeCompilerArgs.add("-Xskip-prerelease-check")
+            getOverriddenKotlinLanguageVersion(project)?.also { languageVersion.set(KotlinVersion.fromVersion(it)) }
+            getOverriddenKotlinApiVersion(project)?.also { apiVersion.set(KotlinVersion.fromVersion(it)) }
+        }
     }
 }
