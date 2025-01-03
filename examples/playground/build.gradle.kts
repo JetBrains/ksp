@@ -8,11 +8,7 @@ plugins {
 
 }
 
-allprojects {
-    repositories {
-        mavenCentral()
-    }
-
+subprojects {
     tasks.withType<KotlinCompilationTask<*>>().configureEach {
         if (this is KspTaskJvm) {
             compilerOptions {

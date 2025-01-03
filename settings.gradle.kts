@@ -30,3 +30,21 @@ include("integration-tests")
 include("kotlin-analysis-api")
 include("symbol-processing-aa-embeddable")
 include("cmdline-parser-gen")
+
+plugins {
+    id ("com.gradle.enterprise") version "3.16"
+}
+
+gradleEnterprise {
+    server = "https://ge.labs.jb.gg"
+    buildScan {
+        publishAlways()
+
+        obfuscation {
+            hostname { host -> "concealed" }
+            username { name -> "concealed" }
+            ipAddresses { adresses -> mutableListOf("0", "0", "0", "0") }
+        }
+
+    }
+}

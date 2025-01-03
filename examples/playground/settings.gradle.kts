@@ -4,8 +4,8 @@ pluginManagement {
     val kspVersion: String? by settings
     val kotlin_repo_url: String? by settings
     plugins {
-        id("com.google.devtools.ksp") version (kspVersion ?: "1.8.0-1.0.9")
-        kotlin("jvm") version (kotlin_version ?: "1.8.0")
+        id("com.google.devtools.ksp") version (kspVersion ?: "2.1.20-Beta1-1.0.29")
+        kotlin("jvm") version (kotlin_version ?: "2.1.0-Beta1")
     }
     repositories {
         gradlePluginPortal()
