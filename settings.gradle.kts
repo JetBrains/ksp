@@ -18,6 +18,7 @@ pluginManagement {
         gradlePluginPortal()
         maven("https://redirector.kotlinlang.org/maven/bootstrap/")
         maven("https://www.jetbrains.com/intellij-repository/snapshots")
+        kotlin_repo_url?.also { maven(it) }
         google()
     }
 }
