@@ -36,7 +36,7 @@ interface JvmPlatformInfo : PlatformInfo {
     /**
      * JVM default mode. Correspond to `-Xjvm-default' to Kotlin compiler
      */
-    val jvmDefaultMode: String
+    val jvmDefaultMode: String?
 }
 
 /**
