@@ -16,9 +16,13 @@ if (!extra.has("kspVersion")) {
     extra.set("kspVersion", "255.255.255-SNAPSHOT")
 }
 
+val kotlin_repo_url: String? by project
+val kotlin_language_version: String by project
+
 repositories {
     maven("https://redirector.kotlinlang.org/maven/bootstrap/")
     mavenCentral()
+    kotlin_repo_url?.also { maven(it) }
 }
 
 plugins {
@@ -53,6 +57,7 @@ subprojects {
         maven("https://redirector.kotlinlang.org/maven/bootstrap/")
         maven("https://www.jetbrains.com/intellij-repository/releases")
         mavenCentral()
+        kotlin_repo_url?.also { maven(it) }
     }
     pluginManager.withPlugin("maven-publish") {
         val publishExtension = extensions.getByType<PublishingExtension>()
@@ -109,7 +114,11 @@ subprojects {
             compilerOptions {
                 jvmTarget = JvmTarget.JVM_1_8
                 languageVersion.set(KotlinVersion.KOTLIN_2_3)
+                logger.warn("Configured kotlin Language Version for the KSP subproject ${project.name} is : ${languageVersion.get()}")
+                languageVersion.set(KotlinVersion.fromVersion(kotlin_language_version))
+                logger.warn("Configured kotlin Language Version for the KSP subproject ${project.name} is : ${languageVersion.get()}")
                 apiVersion.set(languageVersion)
+                logger.warn("Configured kotlin Api Version for the KSP subproject ${project.name} is : ${apiVersion.get()}")
             }
             jvmToolchain {
                 languageVersion = compileJavaVersion
