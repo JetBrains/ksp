@@ -1,12 +1,17 @@
+import org.gradle.kotlin.dsl.maven
+
 rootProject.name = "ksp"
 
 pluginManagement {
-    val buildKotlinVersion: String by settings
-    val buildKspVersion: String by settings
+//    val buildKotlinVersion: String by settings
+//    val buildKspVersion: String by settings
+    val build_ksp_version: String by settings
+    val kotlin_version: String by settings
+    val kotlin_repo_url: String? by settings
 
     plugins {
-        kotlin("jvm") version buildKotlinVersion apply false
-        id("com.google.devtools.ksp") version buildKspVersion apply false
+        kotlin("jvm") version kotlin_version apply false
+        id("com.google.devtools.ksp") version build_ksp_version apply false
     }
 
     repositories {

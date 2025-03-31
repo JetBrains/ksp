@@ -26,8 +26,8 @@ dependencies {
 }
 
 fun Test.configureCommonSettings() {
-    systemProperty("kotlinVersion", kotlinBaseVersion)
-    systemProperty("kspVersion", version)
+    systemProperty("kotlin_version", kotlinBaseVersion)
+    systemProperty("build_ksp_version", version)
     systemProperty("agpVersion", agpBaseVersion)
     jvmArgumentProviders.add(
         RelativizingInternalPathProvider(
