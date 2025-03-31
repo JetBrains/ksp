@@ -24,7 +24,7 @@ fun Test.configureCommonSettings() {
     jvmArgumentProviders.add(
         RelativizingInternalPathProvider(
             "testRepo",
-            rootProject.layout.buildDirectory.dir("repos/test").get().asFile,
+            rootProject.layout.buildDirectory.dir("repos/test").get().asFile
         )
     )
     dependsOn(":api:publishAllPublicationsToTestRepository")

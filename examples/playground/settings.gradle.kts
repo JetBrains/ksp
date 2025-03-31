@@ -1,13 +1,25 @@
 pluginManagement {
-    val kotlinVersion: String by settings
+    val kotlin_version: String by settings
     val kspVersion: String by settings
+    val kotlin_repo_url: String by settings
     plugins {
         id("com.google.devtools.ksp") version kspVersion
-        kotlin("jvm") version kotlinVersion
+        kotlin("jvm") version kotlin_version
     }
     repositories {
         gradlePluginPortal()
         mavenCentral()
+        mavenLocal()
+        kotlin_repo_url.also { maven(it) }
+    }
+}
+
+dependencyResolutionManagement {
+    val kotlin_repo_url: String by settings
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        kotlin_repo_url?.also { maven(it) }
     }
 }
 
