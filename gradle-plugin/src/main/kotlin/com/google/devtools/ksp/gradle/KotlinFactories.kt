@@ -308,13 +308,14 @@ abstract class KspTaskNative @Inject internal constructor(
     compilation: KotlinCompilationInfo,
     objectFactory: ObjectFactory,
     providerFactory: ProviderFactory,
-    execOperations: ExecOperations
+//    WA for KT-67992
+//    execOperations: ExecOperations
 ) : KotlinNativeCompile(
         compilation,
         objectFactory.newInstance(KotlinNativeCompilerOptionsDefault::class.java),
         objectFactory,
         providerFactory,
-        execOperations
+//        execOperations
     ),
     KspTask
 
