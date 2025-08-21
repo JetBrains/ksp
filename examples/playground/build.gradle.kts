@@ -14,11 +14,9 @@ allprojects {
             apiVersion.set(KotlinVersion.fromVersion(kotlin_api_version))
             logger.warn("Configured kotlin Api Version for the project ${project.name} is : ${apiVersion.get()}")
             allWarningsAsErrors.set(false)
-            extraWarnings.set(true)
             freeCompilerArgs.addAll(
                 "-Xreport-all-warnings",
                 "-Xrender-internal-diagnostic-names",
-                "-Xuse-fir-experimental-checkers"
             )
             project.findProperty("kotlin_additional_cli_options")?.let {
                 freeCompilerArgs.addAll((it as String).trim().split(" ").toList())
