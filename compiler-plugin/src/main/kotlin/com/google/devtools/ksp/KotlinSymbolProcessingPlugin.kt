@@ -27,7 +27,7 @@ import org.jetbrains.kotlin.cli.jvm.config.JavaSourceRoot
 import org.jetbrains.kotlin.compiler.plugin.AbstractCliOption
 import org.jetbrains.kotlin.compiler.plugin.CliOptionProcessingException
 import org.jetbrains.kotlin.compiler.plugin.CommandLineProcessor
-import org.jetbrains.kotlin.compiler.plugin.ComponentRegistrar
+import org.jetbrains.kotlin.compiler.plugin.CompilerPluginRegistrar
 import org.jetbrains.kotlin.compiler.plugin.ExperimentalCompilerApi
 import org.jetbrains.kotlin.config.CommonConfigurationKeys
 import org.jetbrains.kotlin.config.CompilerConfiguration
@@ -63,8 +63,8 @@ class KotlinSymbolProcessingCommandLineProcessor : CommandLineProcessor {
 //   https://github.com/tschuchortdev/kotlin-compile-testing
 @Suppress("DEPRECATION")
 @ExperimentalCompilerApi
-class KotlinSymbolProcessingComponentRegistrar : ComponentRegistrar {
-    override fun registerProjectComponents(project: MockProject, configuration: CompilerConfiguration) {
+class KotlinSymbolProcessingComponentRegistrar(override val pluginId: String) : CompilerPluginRegistrar() {
+    fun registerProjectComponents(project: MockProject, configuration: CompilerConfiguration) {
         // KSP 1.x don't and will not support K2. Do not register if language version >= 2.
         if (configuration.languageVersionSettings.languageVersion >= LanguageVersion.KOTLIN_2_0)
             return
@@ -100,4 +100,10 @@ class KotlinSymbolProcessingComponentRegistrar : ComponentRegistrar {
     // FirKotlinToJvmBytecodeCompiler throws an error when it sees an incompatible plugin.
     override val supportsK2: Boolean
         get() = true
+
+    override fun ExtensionStorage.registerExtensions(
+        configuration: CompilerConfiguration
+    ) {
+        TODO("Not yet implemented")
+    }
 }
