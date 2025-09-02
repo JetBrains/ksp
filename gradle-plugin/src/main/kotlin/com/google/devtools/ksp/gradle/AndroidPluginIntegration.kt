@@ -70,7 +70,9 @@ object AndroidPluginIntegration {
     }
 
     fun getCompilationSourceSets(kotlinCompilation: KotlinJvmAndroidCompilation): List<String> {
-        return kotlinCompilation.androidVariant?.sourceSets?.map { it.name } ?: emptyList()
+        return kotlinCompilation.androidVariant
+            ?.sourceSets
+            ?.map { it.name } ?: emptyList()
     }
 
     /**
