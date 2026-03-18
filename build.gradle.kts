@@ -120,8 +120,8 @@ subprojects {
                 jvmTarget = JvmTarget.JVM_1_8
                 languageVersion.set(KotlinVersion.KOTLIN_2_3)
                 logger.warn("Configured kotlin Language Version for the KSP subproject ${project.name} is : ${languageVersion.get()}")
-                languageVersion.set(KotlinVersion.fromVersion(kotlin_language_version))
-                logger.warn("Configured kotlin Language Version for the KSP subproject ${project.name} is : ${languageVersion.get()}")
+//                languageVersion.set(KotlinVersion.fromVersion(kotlin_language_version))
+//                logger.warn("Configured kotlin Language Version for the KSP subproject ${project.name} is : ${languageVersion.get()}")
                 apiVersion.set(languageVersion)
                 logger.warn("Configured kotlin Api Version for the KSP subproject ${project.name} is : ${apiVersion.get()}")
             }
