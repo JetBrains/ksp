@@ -5,6 +5,14 @@ plugins {
 }
 
 allprojects {
+    val kotlin_repo_url: String by project
+
+    repositories {
+        mavenCentral()
+        kotlin_repo_url.also { maven(it) }
+        mavenLocal()
+    }
+
     val kotlin_language_version: String by project
     val kotlin_api_version: String by project
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).configureEach {
