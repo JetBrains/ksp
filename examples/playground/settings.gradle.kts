@@ -14,15 +14,6 @@ pluginManagement {
     }
 }
 
-dependencyResolutionManagement {
-    val kotlin_repo_url: String by settings
-    repositories {
-        mavenCentral()
-        mavenLocal()
-        kotlin_repo_url?.also { maven(it) }
-    }
-}
-
 rootProject.name = "playground"
 
 include(":workload")
