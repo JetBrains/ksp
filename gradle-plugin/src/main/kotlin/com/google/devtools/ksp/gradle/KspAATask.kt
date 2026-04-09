@@ -416,6 +416,7 @@ abstract class KspAATask @Inject constructor(
                     if (kotlinCompilation is KotlinNativeCompilation) {
                         val konanTargetName = kotlinCompilation.target.konanTarget.name
                         cfg.konanTargetName.value(konanTargetName)
+                        @Suppress("DEPRECATION_ERROR")
                         cfg.konanHome.value((kotlinCompileProvider.get() as KotlinNativeCompile).konanHome)
 
                         val isKlibCrossCompilationEnabled = getKlibCrossCompilationSupport(
